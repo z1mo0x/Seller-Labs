@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
+import { motion } from "framer-motion";
 
 export default function Header() {
 
@@ -22,13 +23,23 @@ export default function Header() {
     }
 
     return (
-        <div className="p-2 border-b h-[100px] ">
+        <motion.div
+            initial={{ y: -100, opacity: 0, }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: .3 }}
+            className="p-2 border-b h-[100px] ">
             <div className="container">
                 <div className="flex justify-around items-center-safe">
-                    <div>
+                    <motion.div
+                        initial={{ opacity: 0, x: -20, scale: .8 }}
+                        whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                        transition={{ delay: .5, duration: .3, ease: 'linear' }}
+                        viewport={{ once: true }}
+                    >
                         <Image src={'/logo.png'} alt="Лого" width={200} height={0} className="w-[100px] h-[75px] object-contain" priority />
-                    </div>
-                    <nav className="flex gap-5">
+                    </motion.div>
+                    <nav
+                        className="flex gap-5">
                         {getNavItems()}
                     </nav>
                     <div>
@@ -36,6 +47,6 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }

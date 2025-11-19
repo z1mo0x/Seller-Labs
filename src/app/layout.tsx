@@ -25,7 +25,7 @@ export default function RootLayout({
         className={`${mainFont.variable} antialiased`}
       >
         <Header />
-        <main className="h-full">
+        <main >
           {children}
         </main>
         <Toaster />
